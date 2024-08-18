@@ -1,0 +1,71 @@
+<nav class="navbar bg-light">
+    <div class="container-fluid justify-content-center">
+      <a class="navbar-brand" href="#">
+        Lo Shu Grid Generator
+      </a>
+    </div>
+</nav>
+
+
+<div class="container mt-3 loshu-container">
+    <div class="input-group mb-1 row">
+        <label for="Username" class="col-xs-12 col-12 col-md-4 mb-1">Enter your name</label>
+        <input type="text" class="col-xs-12 col-12 col-md-4 mb-3 form-control ml-12" name="Username" placeholder="Name" ngModel [(ngModel)]="name">
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-xs-12 col-12 col-md-4 mb-1">Enter your gender</label>
+        <div class="col col-sm-1 col-md-1 form-check form-check-inline ml-12">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Male" (change)="genderChange($event)">
+            <label class="form-check-label" for="Male">
+              Male
+            </label>
+        </div>
+        <div class="col col-sm-1 col-md-1 form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Female" (change)="genderChange($event)">
+            <label class="form-check-label" for="Female">
+              Female
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-xs-12 col-12 col-md-4 mb-1">Date of Birth</label>
+        <div class="col-xs-12 col-12 col-md-4 form-group mb-3 w-380">
+          <input type="text"
+                 placeholder="DOB"
+                 class="form-control"
+                 [(ngModel)]="dateOfBirth"
+                 bsDatepicker>
+        </div>
+    </div>
+   
+    <div class="row mb-3">
+        <button type="button" class="btn btn-primary" (click)="generateGrid()">Generate Lo Shu Grid</button>
+    </div>
+
+    <div *ngIf="showGrid" class="row mb-3 loshu-grid-align" >Lo Shu Grid based on DOB : {{dateOfBirth | date: 'dd/MMM/yyyy'}} </div>
+    <div *ngIf="showGrid" class="mb-3 loshu-grid-align" >
+        <div>
+            <div class="row">
+                <div class="grid-cell">{{ls4}}</div>
+                <div class="grid-cell">{{ls9}}</div>
+                <div class="grid-cell">{{ls2}}</div>
+            </div>
+            <div class="row">
+                <div class="grid-cell">{{ls3}}</div>
+                <div class="grid-cell">{{ls5}}</div>
+                <div class="grid-cell">{{ls7}}</div>
+            </div>
+            <div class="row">
+                <div class="grid-cell">{{ls8}}</div>
+                <div class="grid-cell">{{ls1}}</div>
+                <div class="grid-cell">{{ls6}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showGrid" class="row mb-3 loshu-grid-align">Numbers present : {{numbersPresent}} </div>
+    <div *ngIf="showGrid" class="row mb-3 loshu-grid-align" >Numbers missing : {{numbersMissing}} </div>
+
+</div>
